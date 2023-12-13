@@ -16,11 +16,17 @@ export default class ListTemplate implements DOMList {
         this.ul.innerHTML = '';
     }
 
+    //render(fullList: FullList): void {
     render(fullList: Full): void {
         this.clear()
 
         fullList.list.forEach(item => {
-        
+            const li = document.createElement('li') as HTMLLIElement
+            li.className = 'item'
+
+            const check = document.createElement('input') as HTMLInputElement
+            check.type = 'checkbox'
+            check.id = item.id
         })
     }
 }
