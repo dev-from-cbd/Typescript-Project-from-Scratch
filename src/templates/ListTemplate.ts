@@ -7,7 +7,11 @@ interface DOMList {
 }
 
 export default class ListTemplate implements DOMList {
-    ul: HTMLUListElement;
+
+    ul: HTMLUListElement
+
+    static instance: ListTemplate = new ListTemplate()
+
     private constructor() {
         this.ul = document.getElementById('listItems') as HTMLUListElement;
     }
@@ -27,6 +31,31 @@ export default class ListTemplate implements DOMList {
             const check = document.createElement('input') as HTMLInputElement
             check.type = 'checkbox'
             check.id = item.id
+            //check.tabIndex = 0
+            check.checked = item.checked
+            li.append(checked)
+
+            check.addEventListener('change', () => {
+                item.checked = !item.checked
+                fullList.save()
+            })
+
+            const label = document.createElement('label') as HTMLLabelElement
+            label.htmlFor = item.id
+            label.textContent = item.item
+            li.append(label)
+
+            const button = document.createElement('button') as HTMLButtonElement
+            button.className = 'button'
+            button.textContent = 'X'
+            li.append(button)
+
+            button.addEventListener('click', () => {
+                fullList.removeItem(item.id)
+                this.render(fullList)
+            })
+
+            this.ul.append(li)
         })
     }
 }
