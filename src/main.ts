@@ -15,7 +15,7 @@ const initApp = (): void => {
     const newEntryText: string = input.value.trim()
     if (!newEntryText.length) return
 
-    const itemId: number = fullList.list.length ? parseInt(fullList.list[fullList])
+    const itemId: number = fullList.list.length ? parseInt(fullList.list[fullList.list.length - 1])
   })
 
   const clearItems = document.getElementById('clearItemsButton') as HTMLButtonElement
